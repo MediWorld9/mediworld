@@ -1,231 +1,185 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#087fb8"><title>MediWorld — Medicine Information</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087fb8">
+<title>MediWorld — Medicine Information</title>
 <style>
-:root{--blue:#087fb8;--navy:#083b5c;--teal:#16a6a0;--bg:#f3f8fb;--ink:#163247;--muted:#617887;--line:#dce8ee;--white:#fff;--red:#a52d36}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1100px;margin:auto;padding:18px}
-header{background:linear-gradient(120deg,#064d79,#0797b2);color:white;border-radius:22px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 12px 30px #0b54751c}
-.brand{font-size:28px;font-weight:850;letter-spacing:-1px}.tagline{opacity:.9}.cross{font-size:42px}
+:root{--blue:#087fb8;--navy:#083b5c;--teal:#16a6a0;--bg:#f3f8fb;--ink:#163247;--muted:#617887;--line:#dce8ee}
+*{box-sizing:border-box}
+html,body{min-height:100%;height:auto}
+body{margin:0;overflow-y:auto!important;overflow-x:hidden;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.shell{max-width:1100px;margin:auto;padding:18px}
+header{background:linear-gradient(120deg,#064d79,#0797b2);color:white;border-radius:22px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:28px;font-weight:850}.tagline{opacity:.9}.cross{font-size:42px}
 .topline{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0 12px;flex-wrap:wrap}
-nav{display:flex;gap:8px;flex-wrap:wrap}.navbtn,.chip,.secondary{border:1px solid var(--line);background:white;color:var(--ink);padding:9px 14px;border-radius:12px}
-.navbtn.active,.primary{background:var(--blue);color:white;border-color:var(--blue)}.primary{border:0;border-radius:12px;padding:12px 17px;font-weight:700}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.navbtn,.secondary{border:1px solid var(--line);background:white;color:var(--ink);padding:11px 16px;border-radius:14px}
+.navbtn.active,.primary{background:var(--blue);color:white;border-color:var(--blue)}
+.primary{border:0;border-radius:12px;padding:13px 18px;font-weight:700}
 .hero{background:linear-gradient(115deg,#e0f4ff,#e4f8f3);border:1px solid #cde8ee;border-radius:20px;padding:24px;margin:14px 0}
-h1{font-size:clamp(24px,4vw,34px);line-height:1.15;margin:0 0 8px;color:#104967}h2{font-size:20px;margin:0 0 12px}p{margin:6px 0}.muted{color:var(--muted)}
-.searchrow{display:flex;gap:9px;margin-top:17px}.searchrow input{flex:1;min-width:0}
-input,select{border:1px solid var(--line);border-radius:12px;padding:12px;background:white;color:var(--ink);width:100%}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:0 5px 18px #123b5010}
-.category{display:flex;align-items:center;gap:10px;text-align:left;width:100%;font-weight:700}.emoji{font-size:24px}
-.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.drug{border:1px solid var(--line);border-radius:13px;padding:13px;background:white;text-align:left;color:var(--ink)}.drug:hover{border-color:var(--blue)}
-.small{font-size:12px;color:var(--muted)}.pill{display:inline-block;border-radius:99px;background:#e8f5fa;color:#176084;padding:4px 9px;font-size:12px;margin-top:7px}
-.hidden{display:none!important}.section{margin:16px 0}.detailhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.detailblock{padding:13px 0;border-top:1px solid var(--line)}.detailblock h3{font-size:15px;margin:0 0 4px}
-.warning{background:#fff5e8;border:1px solid #f3d6a9;color:#694512;border-radius:13px;padding:13px;font-size:13px}
-.danger{background:#fff0f0;border:1px solid #f1cccc;color:#762b2b;border-radius:13px;padding:13px;font-size:13px}
+h1{font-size:clamp(24px,4vw,34px);line-height:1.2;margin:0 0 8px;color:#104967}
+h2{font-size:22px;margin:0 0 12px}
+p{margin:7px 0}.muted,.small{color:var(--muted)}.small{font-size:13px}
+.searchrow{display:flex;gap:9px;margin-top:17px}
+input,select{border:1px solid var(--line);border-radius:12px;padding:13px;background:white;color:var(--ink);width:100%;min-width:0}
+.searchrow input{flex:1}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;box-shadow:0 5px 18px #123b5010}
+.category{display:flex;align-items:center;gap:10px;text-align:left;width:100%;font-weight:700}
+.emoji{font-size:24px}
+.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.drug{border:1px solid var(--line);border-radius:13px;padding:14px;background:white;text-align:left;color:var(--ink);width:100%}
+.drug:hover{border-color:var(--blue)}
+.pill{display:inline-block;border-radius:99px;background:#e8f5fa;color:#176084;padding:4px 10px;font-size:12px;margin-top:7px}
+.section{margin:16px 0}.detailblock{padding:14px 0;border-top:1px solid var(--line)}
+.warning{background:#fff5e8;border:1px solid #f3d6a9;color:#694512;border-radius:13px;padding:14px;font-size:14px}
+.danger{background:#fff0f0;border:1px solid #f1cccc;color:#762b2b;border-radius:13px;padding:14px;font-size:14px}
 .upload{border:2px dashed #9fc7d8;border-radius:15px;padding:22px;text-align:center;background:#f8fcfe}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+.hidden{display:none!important}footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
 @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.results{grid-template-columns:1fr}.shell{padding:12px}.hero{padding:18px}}
 @media(max-width:440px){.grid{grid-template-columns:1fr}.searchrow{flex-direction:column}.brand{font-size:24px}}
-.coverage-note{max-width:100%;margin-top:8px;padding:8px 10px;border-radius:10px;background:#eaf4f8;color:#34586b;font-size:12px}.lang-bn{font-family:system-ui,"Noto Sans Bengali",sans-serif}
 </style>
 </head>
-<body><div class="shell">
-<header><div><div class="brand">✚ MediWorld</div><div class="tagline">Know Your Medicine. Understand Your Health.</div></div><div class="cross">🌍</div></header>
-<div class="topline"><div><b>Global Medicine Explorer</b><div class="small">Educational medicine information prototype</div></div><select id="language" style="max-width:170px" aria-label="Display language"><option value="English">English</option><option value="বাংলা">বাংলা</option><option value="हिन्दी">हिन्दी</option><option value="Español">Español</option><option value="Français">Français</option><option value="العربية">العربية</option></select><div class="small coverage-note" id="coverageNote">Live database: U.S. FDA labels only. Bangladesh (DGDA), India (CDSCO), UK (MHRA) and EU (EMA) are not connected yet.</div></div>
-<nav aria-label="Main navigation"><button class="navbtn active" data-page="home">Home</button><button class="navbtn" data-page="search">Medicine search</button><button class="navbtn" data-page="photo">Photo lookup</button><button class="navbtn" data-page="saved">Saved medicines</button></nav>
+<body>
+<div class="shell">
+<header><div><div class="brand">✚ MediWorld</div><div class="tagline" id="tagline">Know Your Medicine. Understand Your Health.</div></div><div class="cross">🌍</div></header>
+<div class="topline"><div><b id="explorer">Global Medicine Explorer</b><div class="small">Educational medicine information prototype</div></div>
+<select id="language" style="max-width:170px" aria-label="Display language"><option>English</option><option>বাংলা</option></select>
+<div class="small" id="coverage">Live database: U.S. FDA labels only. Bangladesh (DGDA), India (CDSCO), UK (MHRA) and EU (EMA) are not connected yet.</div></div>
+<nav aria-label="Main navigation">
+<button class="navbtn active" data-page="home">Home</button><button class="navbtn" data-page="search">Medicine search</button><button class="navbtn" data-page="photo">Photo lookup</button><button class="navbtn" data-page="saved">Saved medicines</button>
+</nav>
 <main id="app">
-<section class="hero"><h1>Find trusted medicine information</h1><p>Search by medicine name or active ingredient to explore uses, side effects, warnings and interactions.</p><div class="searchrow"><input id="homeQuery" placeholder="Try Paracetamol, Ibuprofen, Cetirizine…" aria-label="Search medicine"><button class="primary" id="homeSearch">Search</button></div></section>
+<section class="hero"><h1>Find trusted medicine information</h1><p>Search by medicine name or active ingredient.</p><div class="searchrow"><input id="homeQuery" placeholder="Enter medicine name…"><button class="primary" id="homeSearch">Search</button></div></section>
 <section class="section"><h2>Explore categories</h2><div class="grid" id="categories"></div></section>
 <section class="section card"><h2>Popular example medicines</h2><div class="results" id="popular"></div></section>
-<section class="warning"><b>Medical safety:</b> This prototype is for education only. It is not a diagnosis, prescription or personal dosing tool. Always check the official leaflet and ask a qualified healthcare professional before taking or changing medicine.</section>
+<div class="warning">Medical safety: This prototype is for education only. It is not a diagnosis, prescription or personal dosing tool. Always check the official leaflet and ask a qualified healthcare professional before taking or changing medicine.</div>
 </main>
-<footer>MediWorld · MVP prototype · Medicine records shown here are illustrative and not a complete or verified global database.</footer>
+<footer>MediWorld · MVP prototype · Information coverage is limited and must be verified with a pharmacist or doctor.</footer>
 </div>
 <script>
-const medicines=[
-{name:"Paracetamol",generic:"Acetaminophen",category:"Pain relief",uses:"Used to relieve mild to moderate pain and reduce fever.",benefits:"May help with headaches, toothaches and muscle aches.",effects:"Possible effects include nausea, rash and rare allergic reactions. Overdose can cause severe liver injury.",warnings:"Extra caution is needed with liver disease, heavy alcohol use and combination products containing paracetamol.",dosage:"The appropriate amount depends on age, weight, formulation and health conditions. Follow the official product label or a prescriber's instructions.",interactions:"Some anticoagulants, including warfarin, may interact. Ask a pharmacist to review your medicines."},
-{name:"Ibuprofen",generic:"Ibuprofen",category:"Pain relief",uses:"Used for pain, fever and inflammation.",benefits:"May relieve menstrual, dental and muscle pain.",effects:"Can cause stomach upset, ulcers, bleeding, kidney problems and allergic reactions.",warnings:"Not suitable for everyone, including some people with kidney or stomach disease and during certain stages of pregnancy.",dosage:"Use only as directed on the approved product label or by a healthcare professional.",interactions:"May interact with other NSAIDs, anticoagulants and some blood-pressure medicines."},
-{name:"Cetirizine",generic:"Cetirizine hydrochloride",category:"Allergy",uses:"Used to relieve allergy symptoms and hives.",benefits:"Can reduce sneezing, itchy eyes and runny nose.",effects:"May cause drowsiness, dry mouth, dizziness and fatigue.",warnings:"Use caution with alcohol and sedating medicines. Kidney function may affect use.",dosage:"Depends on age, kidney function and formulation. Follow the official label or professional advice.",interactions:"Alcohol and sedating medicines may increase drowsiness."},
-{name:"Amoxicillin",generic:"Amoxicillin",category:"Antibiotics",uses:"Treats certain susceptible bacterial infections when prescribed.",benefits:"Can treat specific bacterial infections. It does not treat viral illnesses such as colds or flu.",effects:"May cause diarrhea, nausea, rash and potentially severe allergic reactions.",warnings:"Avoid with a serious penicillin allergy unless assessed by a clinician. Use antibiotics only when prescribed.",dosage:"Must be determined by a prescriber according to infection, age, kidney function and other factors.",interactions:"Some anticoagulants and methotrexate may interact."},
-{name:"Metformin",generic:"Metformin hydrochloride",category:"Diabetes",uses:"Used to help manage blood glucose in eligible people with type 2 diabetes.",benefits:"Can improve blood sugar control alongside diet and exercise.",effects:"Common effects include diarrhea, nausea and stomach discomfort. Rarely, lactic acidosis can occur.",warnings:"Kidney function needs assessment. Inform medical staff before contrast imaging or surgery.",dosage:"Individualized by a prescriber according to formulation, kidney function and response.",interactions:"Some contrast agents and other medicines can affect safety."},
-{name:"Vitamin D3",generic:"Cholecalciferol",category:"Vitamins",uses:"Used to prevent or treat vitamin D deficiency when appropriate.",benefits:"Supports normal bone and muscle function.",effects:"Excessive intake may cause high blood calcium, nausea and kidney problems.",warnings:"Excessive supplementation can be harmful. Seek advice if you have kidney disease or high calcium.",dosage:"Depends on age, deficiency and medical circumstances.",interactions:"Certain diuretics and other medicines can interact."}
-];
-const categories=[["Pain relief","💊"],["Allergy","🌿"],["Antibiotics","🧫"],["Diabetes","🩸"],["Heart health","❤️"],["Vitamins","☀️"]];
-const app=document.getElementById('app');let saved=JSON.parse(localStorage.getItem('mw-saved')||'[]');
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function card(d){return `<button class="drug" data-drug="${esc(d.name)}"><b>${esc(d.name)}</b><div class="small">${esc(d.generic)}</div><span class="pill">${esc(d.category)}</span></button>`}
-function renderHome(){app.innerHTML=`<section class="hero"><h1>Find trusted medicine information</h1><p>Search by medicine name or active ingredient.</p><div class="searchrow"><input id="homeQuery" placeholder="Enter medicine name…" aria-label="Search medicine"><button class="primary" id="homeSearch">Search</button></div></section><section class="section"><h2>Explore categories</h2><div class="grid">${categories.map(([n,e])=>`<button class="card category" data-category="${n}"><span class="emoji">${e}</span>${n}</button>`).join('')}</div></section><section class="section card"><h2>Popular example medicines</h2><div class="results">${medicines.slice(0,4).map(card).join('')}</div></section>`;bindHome()}
-function bindHome(){document.getElementById('homeSearch').onclick=()=>search(document.getElementById('homeQuery').value);document.getElementById('homeQuery').onkeydown=e=>{if(e.key==='Enter')search(e.target.value)}}
-function renderSearch(q=''){app.innerHTML=`<section class="card"><h2>Search medicines</h2><input id="query" placeholder="Medicine or generic name…" value="${esc(q)}"><div class="small" style="margin:8px 0">Search the example records included in this prototype.</div><div class="results" id="results">${results(q)}</div></section>`;let el=document.getElementById('query');el.oninput=()=>document.getElementById('results').innerHTML=results(el.value);bindDrugs()}
-function results(q){let x=medicines.filter(d=>(d.name+' '+d.generic+' '+d.category).toLowerCase().includes(q.toLowerCase()));return x.map(card).join('')||'<p class="muted">No matching example record. Try another spelling or ingredient.</p>'}
-function search(q){setNav('search');renderSearch(q)}
-function bindDrugs(){document.querySelectorAll('[data-drug]').forEach(b=>b.onclick=()=>detail(medicines.find(d=>d.name===b.dataset.drug)))}
-function detail(d){app.innerHTML=`<button class="secondary" id="back">← Back to search</button><section class="card section"><div class="detailhead"><div><div style="font-size:30px">💊</div><h1>${esc(d.name)}</h1><div class="muted">${esc(d.generic)}</div><span class="pill">${esc(d.category)}</span></div><button class="secondary" id="save">${saved.includes(d.name)?'♥ Saved':'♡ Save'}</button></div>${[['What is it used for?',d.uses],['Potential benefits',d.benefits],['Possible side effects',d.effects],['Warnings and precautions',d.warnings],['Dosage information',d.dosage],['Medicine interactions',d.interactions]].map(([h,t])=>`<div class="detailblock"><h3>${h}</h3><p class="muted">${esc(t)}</p></div>`).join('')}<div class="warning">This is a simplified educational example, not a verified product label or personalized advice. Brand, strength, formulation and country can change medicine instructions.</div></section>`;document.getElementById('back').onclick=()=>renderSearch();document.getElementById('save').onclick=()=>{saved=saved.includes(d.name)?saved.filter(x=>x!==d.name):[...saved,d.name];localStorage.setItem('mw-saved',JSON.stringify(saved));detail(d)}}
-function renderPhoto(){app.innerHTML=`<section class="card"><h2>📷 Medicine photo lookup</h2><p class="muted">Choose a clear photo of the medicine box, label or blister pack.</p><div class="upload section"><input type="file" id="photo" accept="image/*"><img id="preview" class="hidden" style="max-width:100%;max-height:280px;object-fit:contain;margin:15px auto;border-radius:12px" alt="Medicine photo preview"><p class="small" id="photoStatus">Image preview only — automatic identification is not connected.</p></div><div class="danger">Do not take a medicine based only on a photo match. Similar packaging can contain different ingredients or strengths. Confirm the active ingredient, strength and manufacturer with a pharmacist.</div></section>`;document.getElementById('photo').onchange=e=>{let f=e.target.files[0];if(!f)return;let im=document.getElementById('preview');im.src=URL.createObjectURL(f);im.classList.remove('hidden');document.getElementById('photoStatus').textContent='Photo loaded for preview. No medicine has been identified.'}}
-function renderSaved(){app.innerHTML=`<section class="card"><h2>Saved medicines</h2><div class="results">${medicines.filter(d=>saved.includes(d.name)).map(card).join('')||'<p class="muted">You have not saved any medicines yet.</p>'}</div></section>`;bindDrugs()}
-function setNav(page){document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===page))}
-function page(p){setNav(p);if(p==='home')renderHome();if(p==='search')renderSearch();if(p==='photo')renderPhoto();if(p==='saved')renderSaved()}
-document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>page(b.dataset.page));
-document.getElementById('language').onchange=e=>{if(e.target.value!=='English')alert('Language preference selected: '+e.target.value+'. Full verified translations will be added in a later release.');};
-renderHome();
-</script><script>
-/* MediWorld live database layer: public US FDA drug-label records. */
-let liveMedicines=[];
-const FDA_LABEL_API='https://api.fda.gov/drug/label.json';
-const FDA_SOURCE='https://open.fda.gov/apis/drug/label/';
-function firstText(v){if(!v)return '';if(Array.isArray(v))return v.filter(Boolean).join('\n\n');return String(v)}
-function cleanDrugRecord(r){const f=r.openfda||{};return {__live:true,brand:firstText(f.brand_name),generic:firstText(f.generic_name),manufacturer:firstText(f.manufacturer_name),route:firstText(f.route),form:firstText(f.dosage_form),productType:firstText(f.product_type),updated:r.effective_time||'',indications:firstText(r.indications_and_usage),purpose:firstText(r.purpose),uses:firstText(r.indications_and_usage||r.purpose),warnings:firstText(r.warnings||r.warnings_and_cautions),contraindications:firstText(r.contraindications),effects:firstText(r.adverse_reactions),dosage:firstText(r.dosage_and_administration),interactions:firstText(r.drug_interactions),pregnancy:firstText(r.pregnancy||r.pregnancy_or_breast_feeding),active:firstText(f.substance_name),id:firstText(f.set_id)||firstText(r.id)}}
-function liveCard(d,i){const name=d.brand||d.generic||'Medicine label';return `<button class="drug" data-live-drug="${i}"><b>${esc(name)}</b><div class="small">${esc(d.generic||d.active||'Generic name not listed')}</div>${d.manufacturer?`<div class="small">${esc(d.manufacturer)}</div>`:''}<span class="pill">U.S. FDA label</span></button>`}
-async function fetchFDA(searchField,q){const params=new URLSearchParams({search:`openfda.${searchField}:"${q.replace(/["\\]/g,'')}"`,limit:'10'});const response=await fetch(`${FDA_LABEL_API}?${params.toString()}`);if(!response.ok){if(response.status===404)return [];throw new Error('The medicine database is temporarily unavailable. Please try again.')}const json=await response.json();return (json.results||[]).map(cleanDrugRecord)}
-async function lookupLive(q){const terms=[q.trim()];if(!terms[0])return [];const [brand,generic]=await Promise.all([fetchFDA('brand_name',terms[0]).catch(()=>[]),fetchFDA('generic_name',terms[0]).catch(()=>[])]);const seen=new Set();return [...brand,...generic].filter(d=>{const k=(d.brand+'|'+d.generic+'|'+d.id).toLowerCase();if(seen.has(k))return false;seen.add(k);return true}).slice(0,12)}
-async function renderSearch(q=''){
- app.innerHTML=`<section class="card"><h2>Search real medicine labels</h2><p class="muted">Search U.S. FDA product-label records by brand or generic name.</p><div class="searchrow"><input id="query" placeholder="e.g. Tylenol, ibuprofen…" value="${esc(q)}"><button class="primary" id="liveSearchBtn">Search</button></div><div class="small" style="margin-top:10px">Live source: U.S. FDA drug product labels. Results depend on country and database coverage.</div><div id="liveStatus" class="muted section">Enter a medicine name to search the live database.</div><div class="results" id="results"></div><div class="warning section">A label record is not a personal recommendation. Label content can be long, vary by product and may not match products sold in your country. Never use this page to choose a dose or change treatment without a pharmacist or doctor.</div></section>`;
- const input=document.getElementById('query');const run=async()=>{const term=input.value.trim();const status=document.getElementById('liveStatus'),out=document.getElementById('results');if(!term){status.textContent='Please enter a medicine name.';out.innerHTML='';return}status.textContent='Searching official FDA label records…';out.innerHTML='';try{liveMedicines=await lookupLive(term);if(!liveMedicines.length){status.textContent='No matching FDA label was found. This does not mean the medicine is unsafe or unavailable. Try the active ingredient or another spelling. This first database mainly covers U.S. product labels.';return}status.textContent=`Found ${liveMedicines.length} label record(s). Select a product to view the source sections.`;out.innerHTML=liveMedicines.map(liveCard).join('');bindDrugs()}catch(e){status.textContent=e.message||'Search failed. Please try again.'}};
- document.getElementById('liveSearchBtn').onclick=run;input.onkeydown=e=>{if(e.key==='Enter')run()};if(q)run();
-}
-function bindDrugs(){document.querySelectorAll('[data-drug]').forEach(b=>b.onclick=()=>detail(medicines.find(d=>d.name===b.dataset.drug)));document.querySelectorAll('[data-live-drug]').forEach(b=>b.onclick=()=>detail(liveMedicines[Number(b.dataset.liveDrug)]))}
-function detail(d){if(!d||!d.__live){const old=medicines.find(x=>x.name===d?.name);if(old){app.innerHTML=`<section class="card"><h2>${esc(old.name)}</h2><p class="muted">Illustrative example only. Not a verified product label.</p><div class="warning">This example is not connected to the live database and must not be used for treatment decisions.</div></section>`;}return}
- const name=d.brand||d.generic||'Medicine label';const blocks=[['Active ingredient / generic name',d.generic||d.active],['What the label says it is used for',d.uses],['Warnings and precautions',d.warnings],['When it should not be used',d.contraindications],['Possible adverse reactions',d.effects],['Dosage and administration — label text',d.dosage],['Drug interactions',d.interactions],['Pregnancy and breastfeeding',d.pregnancy],['Route / dosage form', [d.route,d.form].filter(Boolean).join(' · ')],['Manufacturer',d.manufacturer]];
- app.innerHTML=`<button class="secondary" id="back">← Back to results</button><section class="card section"><div class="detailhead"><div><div style="font-size:28px">💊</div><h1>${esc(name)}</h1><div class="muted">${esc(d.generic||d.active||'Generic name not listed')}</div><span class="pill">U.S. FDA product label</span></div></div>${blocks.filter(x=>x[1]).map(([h,t])=>`<div class="detailblock"><h3>${esc(h)}</h3><p class="muted" style="white-space:pre-wrap">${esc(t)}</p></div>`).join('')}<div class="small detailblock">Label record date: ${esc(d.updated||'Not supplied in this record')}<br>Source: <a href="${FDA_SOURCE}" target="_blank" rel="noopener">openFDA — Drug Product Labeling</a></div><div class="danger section"><b>Important safety notice:</b> This is copied label information, not a diagnosis or individualized medical advice. The FDA states that submitted labeling may not be verified by FDA or identical to the product currently sold. Do not calculate or follow a dose from this page. Confirm the exact product, strength, country label and instructions with a pharmacist or doctor.</div></section>`;
- document.getElementById('back').onclick=()=>renderSearch(document.getElementById('query')?.value||'');
-}
-</script>
-
-<script>
-/* MediWorld bilingual interface. Medicine-label source text remains in its original language. */
 (function(){
- const bn={
- 'Know Your Medicine. Understand Your Health.':'আপনার ওষুধ জানুন। স্বাস্থ্য বুঝুন।',
- 'Global Medicine Explorer':'বিশ্বব্যাপী ওষুধ অনুসন্ধান',
- 'Educational medicine information prototype':'শিক্ষামূলক ওষুধের তথ্যের প্রাথমিক সংস্করণ',
- 'Home':'হোম','Medicine search':'ওষুধ খুঁজুন','Photo lookup':'ছবি দিয়ে খুঁজুন','Saved medicines':'সংরক্ষিত ওষুধ',
- 'Find trusted medicine information':'বিশ্বস্ত ওষুধের তথ্য খুঁজুন',
- 'Search by medicine name or active ingredient to explore uses, side effects, warnings and interactions.':'ওষুধের নাম বা সক্রিয় উপাদান দিয়ে ব্যবহার, পার্শ্বপ্রতিক্রিয়া, সতর্কতা ও পারস্পরিক প্রতিক্রিয়া সম্পর্কে জানুন।',
- 'Search by medicine name or active ingredient.':'ওষুধের নাম বা সক্রিয় উপাদান দিয়ে খুঁজুন।',
- 'Enter medicine name…':'ওষুধের নাম লিখুন…','Search':'খুঁজুন','Explore categories':'বিভাগগুলো দেখুন',
- 'Popular example medicines':'জনপ্রিয় উদাহরণ ওষুধ','Medical safety:':'চিকিৎসা-সংক্রান্ত সতর্কতা:',
- 'This prototype is for education only. It is not a diagnosis, prescription or personal dosing tool. Always check the official leaflet and ask a qualified healthcare professional before taking or changing medicine.':'এই সংস্করণটি শুধু শিক্ষামূলক। এটি রোগ নির্ণয়, প্রেসক্রিপশন বা ব্যক্তিগত ডোজ নির্ধারণের জন্য নয়। ওষুধ খাওয়ার আগে বা পরিবর্তনের আগে প্যাকেটের নির্দেশনা দেখুন এবং যোগ্য চিকিৎসক বা ফার্মাসিস্টের পরামর্শ নিন।',
- 'Search real medicine labels':'প্রকৃত ওষুধের লেবেল খুঁজুন',
- 'Search U.S. FDA product-label records by brand or generic name.':'ব্র্যান্ড বা জেনেরিক নাম দিয়ে যুক্তরাষ্ট্রের FDA ওষুধের লেবেল খুঁজুন।',
- 'Live source: U.S. FDA drug product labels. Results depend on country and database coverage.':'সরাসরি তথ্যসূত্র: যুক্তরাষ্ট্রের FDA ওষুধের লেবেল। ফলাফল দেশ ও ডাটাবেজের আওতার ওপর নির্ভর করে।',
- 'Enter a medicine name to search the live database.':'লাইভ ডাটাবেজে খুঁজতে ওষুধের নাম লিখুন।',
- 'A label record is not a personal recommendation. Label content can be long, vary by product and may not match products sold in your country. Never use this page to choose a dose or change treatment without a pharmacist or doctor.':'ওষুধের লেবেলের তথ্য ব্যক্তিগত চিকিৎসা-পরামর্শ নয়। পণ্যভেদে নির্দেশনা আলাদা হতে পারে এবং আপনার দেশে বিক্রি হওয়া পণ্যের সঙ্গে নাও মিলতে পারে। চিকিৎসক বা ফার্মাসিস্টের পরামর্শ ছাড়া ডোজ নির্ধারণ বা চিকিৎসা পরিবর্তনে এই পেজ ব্যবহার করবেন না।',
- 'Please enter a medicine name.':'অনুগ্রহ করে ওষুধের নাম লিখুন।',
- 'Searching official FDA label records…':'FDA-এর অফিসিয়াল লেবেল খোঁজা হচ্ছে…',
- 'No matching FDA label was found. This does not mean the medicine is unsafe or unavailable. Try the active ingredient or another spelling. This first database mainly covers U.S. product labels.':'FDA-তে মিলে এমন কোনো লেবেল পাওয়া যায়নি। এর মানে ওষুধটি অনিরাপদ বা অনুপলব্ধ—এমন নয়। সক্রিয় উপাদান বা অন্য বানান দিয়ে চেষ্টা করুন। এই ডাটাবেজে মূলত যুক্তরাষ্ট্রের পণ্যের লেবেল রয়েছে।',
- 'Select a product to view the source sections.':'তথ্যের মূল অংশ দেখতে একটি পণ্য নির্বাচন করুন।',
- 'Medicine photo lookup':'ওষুধের ছবি দিয়ে খুঁজুন',
- 'Choose a clear photo of the medicine box, label or blister pack.':'ওষুধের বাক্স, লেবেল বা ব্লিস্টার প্যাকের পরিষ্কার ছবি নির্বাচন করুন।',
- 'Image preview only — automatic identification is not connected.':'এখানে শুধু ছবির প্রিভিউ দেখা যাবে—স্বয়ংক্রিয়ভাবে ওষুধ শনাক্ত করার সুবিধা এখনো যুক্ত হয়নি।',
- 'Photo loaded for preview. No medicine has been identified.':'ছবিটি প্রিভিউয়ের জন্য লোড হয়েছে। কোনো ওষুধ শনাক্ত করা হয়নি।',
- 'Do not take a medicine based only on a photo match. Similar packaging can contain different ingredients or strengths. Confirm the active ingredient, strength and manufacturer with a pharmacist.':'শুধু ছবির মিল দেখে ওষুধ খাবেন না। একই রকম প্যাকেটে ভিন্ন উপাদান বা শক্তির ওষুধ থাকতে পারে। ফার্মাসিস্টের কাছে সক্রিয় উপাদান, শক্তি ও প্রস্তুতকারক নিশ্চিত করুন।',
- 'Back to results':'ফলাফলে ফিরে যান','Active ingredient / generic name':'সক্রিয় উপাদান / জেনেরিক নাম',
- 'What the label says it is used for':'লেবেল অনুযায়ী ব্যবহারের কারণ','Warnings and precautions':'সতর্কতা ও সাবধানতা',
- 'When it should not be used':'যেসব ক্ষেত্রে ব্যবহার করা উচিত নয়','Possible adverse reactions':'সম্ভাব্য পার্শ্বপ্রতিক্রিয়া',
- 'Dosage and administration — label text':'ডোজ ও সেবনবিধি — লেবেলের তথ্য','Drug interactions':'অন্যান্য ওষুধের সঙ্গে প্রতিক্রিয়া',
- 'Pregnancy and breastfeeding':'গর্ভাবস্থা ও শিশুকে বুকের দুধ খাওয়ানো','Route / dosage form':'প্রয়োগের পথ / ওষুধের ধরন',
- 'Manufacturer':'প্রস্তুতকারক','U.S. FDA product label':'যুক্তরাষ্ট্রের FDA পণ্যের লেবেল',
- 'U.S. FDA label':'যুক্তরাষ্ট্রের FDA লেবেল','Label record date:':'লেবেলের রেকর্ডের তারিখ:',
- 'Not supplied in this record':'এই রেকর্ডে দেওয়া নেই','Source:':'তথ্যসূত্র:',
- 'Important safety notice:':'গুরুত্বপূর্ণ নিরাপত্তা সতর্কতা:',
- 'This is copied label information, not a diagnosis or individualized medical advice. The FDA states that submitted labeling may not be verified by FDA or identical to the product currently sold. Do not calculate or follow a dose from this page. Confirm the exact product, strength, country label and instructions with a pharmacist or doctor.':'এটি লেবেল থেকে নেওয়া তথ্য; রোগ নির্ণয় বা ব্যক্তিগত চিকিৎসা-পরামর্শ নয়। FDA জানায়, জমা দেওয়া লেবেল FDA দ্বারা যাচাই করা নাও হতে পারে বা বর্তমানে বিক্রি হওয়া পণ্যের সঙ্গে পুরোপুরি নাও মিলতে পারে। এই পেজ দেখে ডোজ হিসাব বা অনুসরণ করবেন না। সঠিক পণ্য, শক্তি, দেশের লেবেল ও নির্দেশনা চিকিৎসক বা ফার্মাসিস্টের কাছে নিশ্চিত করুন।',
- 'This is a simplified educational example, not a verified product label or personalized advice. Brand, strength, formulation and country can change medicine instructions.':'এটি একটি সরল শিক্ষামূলক উদাহরণ; যাচাইকৃত পণ্যের লেবেল বা ব্যক্তিগত পরামর্শ নয়। ব্র্যান্ড, শক্তি, ওষুধের ধরন ও দেশভেদে নির্দেশনা বদলাতে পারে।',
- 'You have not saved any medicines yet.':'আপনি এখনো কোনো ওষুধ সংরক্ষণ করেননি।',
- 'Saved':'সংরক্ষিত','Save':'সংরক্ষণ করুন','Pain relief':'ব্যথা উপশম','Allergy':'অ্যালার্জি','Antibiotics':'অ্যান্টিবায়োটিক','Diabetes':'ডায়াবেটিস','Heart health':'হৃদ্‌স্বাস্থ্য','Vitamins':'ভিটামিন',
- 'Country database status:':'দেশভিত্তিক ডাটাবেজের অবস্থা:'
- };
- function translate(s){
-   if(bn[s]) return bn[s];
-   let m=s.match(/^Found (\d+) label record\(s\)\.$/); if(m)return `মোট ${m[1]}টি লেবেল রেকর্ড পাওয়া গেছে।`;
-   if(s==='Select a product to view the source sections.') return bn[s];
-   return s;
- }
- function apply(){
-   const isBn=document.getElementById('language')?.value==='বাংলা';
-   document.documentElement.lang=isBn?'bn':'en'; document.body.classList.toggle('lang-bn',isBn);
-   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-   const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
-   nodes.forEach(n=>{if(!n.__mwOriginal)n.__mwOriginal=n.nodeValue;const original=n.__mwOriginal.trim();if(!original)return;const translated=isBn?translate(original):original;if(n.nodeValue.trim()!==translated)n.nodeValue=n.nodeValue.replace(n.nodeValue.trim(),translated)});
-   document.querySelectorAll('input[placeholder],input[aria-label]').forEach(el=>{for(const a of ['placeholder','aria-label'])if(el.hasAttribute(a)){if(!el.dataset['orig'+a])el.dataset['orig'+a]=el.getAttribute(a);el.setAttribute(a,isBn?translate(el.dataset['orig'+a]):el.dataset['orig'+a])}});
-   const note=document.getElementById('coverageNote');if(note)note.textContent=isBn?'লাইভ ডাটাবেজ: শুধু যুক্তরাষ্ট্রের FDA লেবেল। বাংলাদেশ (DGDA), ভারত (CDSCO), যুক্তরাজ্য (MHRA) ও ইউরোপীয় ইউনিয়ন (EMA) এখনো যুক্ত হয়নি।':'Live database: U.S. FDA labels only. Bangladesh (DGDA), India (CDSCO), UK (MHRA) and EU (EMA) are not connected yet.';
- }
- const lang=document.getElementById('language'); if(lang)lang.addEventListener('change',apply);
- const observer=new MutationObserver(()=>apply()); observer.observe(document.body,{childList:true,subtree:true,characterData:true});
- apply();
+'use strict';
+const app=document.getElementById('app');
+const categories=[['Pain relief','💊'],['Allergy','🌿'],['Antibiotics','🧫'],['Diabetes','🩸'],['Heart health','❤️'],['Vitamins','☀️']];
+const samples=[
+{name:'Paracetamol',generic:'Acetaminophen',category:'Pain relief'},
+{name:'Ibuprofen',generic:'Ibuprofen',category:'Pain relief'},
+{name:'Cetirizine',generic:'Cetirizine hydrochloride',category:'Allergy'},
+{name:'Amoxicillin',generic:'Amoxicillin',category:'Antibiotics'},
+{name:'Metformin',generic:'Metformin hydrochloride',category:'Diabetes'},
+{name:'Vitamin D3',generic:'Cholecalciferol',category:'Vitamins'}
+];
+let saved=JSON.parse(localStorage.getItem('mw-saved')||'[]');
+let liveRecords=[];
+let localRecords=[];
+let lastTerm='';
+const FDA='https://api.fda.gov/drug/label.json';
+const FDA_SOURCE='https://open.fda.gov/apis/drug/label/';
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function setNav(page){document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.page===page));}
+function sampleCard(d){return `<button class="drug" data-sample="${esc(d.name)}"><b>${esc(d.name)}</b><div class="small">${esc(d.generic)}</div><span class="pill">${esc(d.category)}</span></button>`;}
+function renderHome(){
+ app.innerHTML=`<section class="hero"><h1>Find trusted medicine information</h1><p>Search by medicine name or active ingredient.</p><div class="searchrow"><input id="homeQuery" placeholder="Enter medicine name…" aria-label="Search medicine"><button class="primary" id="homeSearch">Search</button></div></section><section class="section"><h2>Explore categories</h2><div class="grid">${categories.map(([n,e])=>`<button class="card category" data-category="${esc(n)}"><span class="emoji">${e}</span>${esc(n)}</button>`).join('')}</div></section><section class="section card"><h2>Popular example medicines</h2><div class="results">${samples.slice(0,4).map(sampleCard).join('')}</div></section><div class="warning">Medical safety: This prototype is for education only. It is not a diagnosis, prescription or personal dosing tool. Confirm medicine information with a qualified pharmacist or doctor.</div>`;
+ document.getElementById('homeSearch').onclick=()=>renderSearch(document.getElementById('homeQuery').value);
+ document.getElementById('homeQuery').onkeydown=e=>{if(e.key==='Enter')renderSearch(e.target.value)};
+ bindSampleCards();
+ document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>renderSearch(b.dataset.category));
+}
+function sampleSearch(q){
+ const t=q.toLowerCase().trim();
+ return samples.filter(d=>(d.name+' '+d.generic+' '+d.category).toLowerCase().includes(t));
+}
+function bindSampleCards(){document.querySelectorAll('[data-sample]').forEach(b=>b.onclick=()=>showSample(b.dataset.sample));}
+function showSample(name){
+ const d=samples.find(x=>x.name===name); if(!d)return;
+ app.innerHTML=`<button class="secondary" id="back">← Back to results</button><section class="card section"><h1>${esc(d.name)}</h1><p class="muted">${esc(d.generic)}</p><div class="warning">This is an illustrative example only. It is not a verified product label and does not provide dosage advice. Check the exact product label and consult a pharmacist or doctor.</div></section>`;
+ document.getElementById('back').onclick=()=>renderSearch(lastTerm);
+}
+function renderSearch(q=''){
+ lastTerm=q;
+ app.innerHTML=`<section class="card"><h2>Search medicine labels</h2><p class="muted">Search U.S. FDA product-label records by brand or generic name, plus uploaded MediWorld records if available.</p><div class="searchrow"><input id="query" placeholder="e.g. acetaminophen, ibuprofen…" value="${esc(q)}"><button class="primary" id="searchBtn">Search</button></div><p class="small">Live source: U.S. FDA drug product labels. Results depend on country and database coverage.</p><div id="status" class="muted section">Enter a medicine name to search.</div><div id="results" class="results"></div><div class="warning section">A label record is not a personal recommendation. Never use this page to choose a dose or change treatment without a pharmacist or doctor.</div></section>`;
+ const input=document.getElementById('query');
+ document.getElementById('searchBtn').onclick=()=>runSearch(input.value);
+ input.onkeydown=e=>{if(e.key==='Enter')runSearch(input.value);};
+ if(q)runSearch(q);
+}
+function normalizeRecord(r){
+ const f=r.openfda||{};
+ const txt=v=>Array.isArray(v)?v.filter(Boolean).join('\\n\\n'):String(v||'');
+ return {name:txt(f.brand_name)||txt(f.generic_name)||'Medicine label',generic:txt(f.generic_name)||txt(f.substance_name),manufacturer:txt(f.manufacturer_name),uses:txt(r.indications_and_usage)||txt(r.purpose),warnings:txt(r.warnings)||txt(r.warnings_and_cautions),effects:txt(r.adverse_reactions),dosage:txt(r.dosage_and_administration),interactions:txt(r.drug_interactions),updated:r.effective_time||'',id:txt(f.set_id)||txt(r.id)};
+}
+async function runSearch(q){
+ const term=(q||'').trim();lastTerm=term;
+ const status=document.getElementById('status'),out=document.getElementById('results');
+ if(!term){status.textContent='Please enter a medicine name.';out.innerHTML='';return;}
+ status.textContent='Searching official FDA label records…';out.innerHTML='';
+ let local=localRecords.filter(r=>[r.brand_name,r.generic_name,r.strength,r.country].some(v=>String(v||'').toLowerCase().includes(term.toLowerCase())));
+ let fda=[];
+ try{
+  const safe=term.replace(/["\\]/g,'');
+  const fields=['brand_name','generic_name'];
+  const found=await Promise.all(fields.map(async field=>{
+   const url=FDA+'?'+new URLSearchParams({search:`openfda.${field}:"${safe}"`,limit:'10'});
+   const res=await fetch(url);if(!res.ok)return [];
+   const data=await res.json();return (data.results||[]).map(normalizeRecord);
+  }));
+  fda=[...found[0],...found[1]];
+ }catch(e){status.textContent='FDA search is temporarily unavailable. Showing local matches, if any.';}
+ liveRecords=fda;
+ const seen=new Set();fda=fda.filter(r=>{const k=r.name+'|'+r.generic+'|'+r.id;if(seen.has(k))return false;seen.add(k);return true;});
+ const localHtml=local.map((r,i)=>`<button class="drug" data-local="${i}"><b>${esc(r.brand_name||r.generic_name)}</b><div class="small">${esc(r.generic_name||'')}</div><div class="small">${esc(r.country||'')}</div><span class="pill">MediWorld record</span></button>`).join('');
+ const fdaHtml=fda.map((r,i)=>`<button class="drug" data-fda="${i}"><b>${esc(r.name)}</b><div class="small">${esc(r.generic)}</div><div class="small">${esc(r.manufacturer)}</div><span class="pill">U.S. FDA label</span></button>`).join('');
+ out.innerHTML=localHtml+fdaHtml||'<p class="muted">No matching record found. Try the active ingredient or another spelling.</p>';
+ if(local.length||fda.length)status.textContent=`Found ${local.length+fda.length} record(s). Select one to view details.`;
+ else if(!status.textContent.includes('unavailable'))status.textContent='No matching FDA label was found. This does not mean the medicine is unsafe or unavailable.';
+ document.querySelectorAll('[data-local]').forEach(b=>b.onclick=()=>showLocal(local[Number(b.dataset.local)]));
+ document.querySelectorAll('[data-fda]').forEach(b=>b.onclick=()=>showFDA(fda[Number(b.dataset.fda)]));
+}
+function showLocal(r){
+ const fields=[['Generic name',r.generic_name],['Strength',r.strength],['Dosage form',r.dosage_form],['Country',r.country],['Manufacturer',r.manufacturer],['Uses',r.uses],['Warnings',r.warnings],['Side effects',r.side_effects],['Interactions',r.interactions],['Dosage label text',r.dosage_label]];
+ showDetails(r.brand_name||r.generic_name,fields,r.source_name,r.source_url,r.last_verified);
+}
+function showFDA(r){
+ const fields=[['Active ingredient / generic name',r.generic],['Uses stated on label',r.uses],['Warnings and precautions',r.warnings],['Possible adverse reactions',r.effects],['Dosage and administration — label text',r.dosage],['Drug interactions',r.interactions]];
+ showDetails(r.name,fields,'U.S. FDA openFDA',FDA_SOURCE,r.updated);
+}
+function showDetails(name,fields,source,url,date){
+ app.innerHTML=`<button class="secondary" id="back">← Back to results</button><section class="card section"><div style="font-size:28px">💊</div><h1>${esc(name)}</h1>${fields.filter(x=>x[1]).map(([h,v])=>`<div class="detailblock"><h3>${esc(h)}</h3><p class="muted" style="white-space:pre-wrap">${esc(v)}</p></div>`).join('')}<div class="detailblock small">Source: ${esc(source||'Not provided')}<br>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">Open source</a>`:''}<br>Record date: ${esc(date||'Not supplied')}</div><div class="danger section">This is source-label information, not a diagnosis or personal medical advice. Do not use it to choose a dose. Confirm the exact product, strength and country label with a pharmacist or doctor.</div></section>`;
+ document.getElementById('back').onclick=()=>renderSearch(lastTerm);
+}
+function renderPhoto(){
+ app.innerHTML=`<section class="card"><h2>📷 Medicine photo lookup</h2><p class="muted">Choose a clear photo of the medicine box, label or blister pack.</p><div class="upload section"><input type="file" id="photo" accept="image/*"><img id="preview" class="hidden" style="max-width:100%;max-height:280px;object-fit:contain;margin:15px auto;border-radius:12px" alt="Medicine photo preview"><p class="small" id="photoStatus">Image preview only — automatic identification is not connected.</p></div><div class="danger">Do not take medicine based only on a photo. Confirm the active ingredient, strength and manufacturer with a pharmacist.</div></section>`;
+ document.getElementById('photo').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=document.getElementById('preview');im.src=URL.createObjectURL(f);im.classList.remove('hidden');document.getElementById('photoStatus').textContent='Photo preview loaded. No medicine has been identified.';};
+}
+function renderSaved(){
+ const matches=samples.filter(d=>saved.includes(d.name));
+ app.innerHTML=`<section class="card"><h2>Saved medicines</h2><div class="results">${matches.map(sampleCard).join('')||'<p class="muted">You have not saved any medicines yet.</p>'}</div></section>`;
+ bindSampleCards();
+}
+function page(p){setNav(p);if(p==='home')renderHome();if(p==='search')renderSearch();if(p==='photo')renderPhoto();if(p==='saved')renderSaved();}
+document.querySelectorAll('.navbtn').forEach(b=>b.onclick=()=>page(b.dataset.page));
+document.getElementById('language').onchange=e=>{
+ const bn=e.target.value==='বাংলা';
+ document.documentElement.lang=bn?'bn':'en';
+ document.getElementById('tagline').textContent=bn?'আপনার ওষুধ জানুন। স্বাস্থ্য বুঝুন।':'Know Your Medicine. Understand Your Health.';
+ document.getElementById('explorer').textContent=bn?'বিশ্বব্যাপী ওষুধ অনুসন্ধান':'Global Medicine Explorer';
+ document.querySelectorAll('.navbtn').forEach((b,i)=>b.textContent=bn?['হোম','ওষুধ খুঁজুন','ছবি দিয়ে খুঁজুন','সংরক্ষিত ওষুধ'][i]:['Home','Medicine search','Photo lookup','Saved medicines'][i]);
+};
+document.getElementById('homeSearch').onclick=()=>renderSearch(document.getElementById('homeQuery').value);
+document.getElementById('homeQuery').onkeydown=e=>{if(e.key==='Enter')renderSearch(e.target.value);};
+document.querySelectorAll('[data-category]').forEach(b=>b.onclick=()=>renderSearch(b.dataset.category));
+async function loadLocal(){
+ try{const res=await fetch('./MediWorld_Database_Template.json',{cache:'no-store'});if(res.ok){const data=await res.json();localRecords=Array.isArray(data.records)?data.records:[];}}
+ catch(e){console.info('Optional local database file not loaded.');}
+}
+loadLocal();
+renderHome();
 })();
 </script>
-
-<script>
-/* MediWorld local JSON database + official FDA label search integration. */
-let mwLocalRecords = [];
-let mwLastSearchTerm = '';
-const MW_LOCAL_DB_URL = './MediWorld_Database_Template.json';
-function mwText(v){ return v == null ? '' : (Array.isArray(v) ? v.filter(Boolean).join('\n\n') : String(v)); }
-function mwLocalMatches(q){
-  const term = (q || '').trim().toLowerCase();
-  if(!term) return [];
-  return mwLocalRecords.filter(r => [r.brand_name,r.generic_name,r.strength,r.dosage_form,r.country,r.manufacturer]
-    .some(v => mwText(v).toLowerCase().includes(term)));
-}
-function mwLocalCard(r,i){
-  const name = r.brand_name || r.generic_name || 'Medicine record';
-  return `<button class="drug" data-mw-local="${i}"><b>${esc(name)}</b><div class="small">${esc(r.generic_name||'Generic name not listed')} ${r.strength?` · ${esc(r.strength)}`:''}</div><div class="small">${esc([r.country,r.manufacturer].filter(Boolean).join(' · '))}</div><span class="pill">MediWorld database</span></button>`;
-}
-function mwLocalDetail(r){
-  const name=r.brand_name||r.generic_name||'Medicine record';
-  const fields=[
-    ['Active ingredient / generic name',r.generic_name],['Strength',r.strength],['Dosage form',r.dosage_form],['Country',r.country],['Manufacturer',r.manufacturer],
-    ['Uses stated by source',r.uses],['Warnings and precautions',r.warnings],['Side effects stated by source',r.side_effects],['Interactions stated by source',r.interactions],['Dosage text from label',r.dosage_label]
-  ];
-  app.innerHTML=`<button class="secondary" id="mwBack">← Back to results</button><section class="card section"><div class="detailhead"><div><div style="font-size:28px">💊</div><h1>${esc(name)}</h1><div class="muted">${esc(r.generic_name||'')}</div><span class="pill">MediWorld database · ${esc(r.country||'Country not specified')}</span></div></div>${fields.filter(x=>x[1]).map(([h,v])=>`<div class="detailblock"><h3>${esc(h)}</h3><p class="muted" style="white-space:pre-wrap">${esc(mwText(v))}</p></div>`).join('')}<div class="detailblock small">Source: ${esc(r.source_name||'Not provided')}<br>${r.source_url?`<a href="${esc(r.source_url)}" target="_blank" rel="noopener">Open source record</a>`:'Source URL not provided'}<br>Last verified: ${esc(r.last_verified||'Not provided')}</div><div class="danger section"><b>Medical safety:</b> This record is informational only. Confirm the exact product, country, strength and current official label with a pharmacist or doctor. Do not use it to select a dose or change treatment.</div></section>`;
-  document.getElementById('mwBack').onclick=()=>renderSearch(mwLastSearchTerm);
-}
-function mwRenderSearchResults(q, fdaRecords=[]){
-  const local=mwLocalMatches(q);
-  const localHtml=local.length?`<h3 class="section">MediWorld database (${local.length})</h3><div class="results">${local.map(mwLocalCard).join('')}</div>`:'';
-  const fdaHtml=fdaRecords.length?`<h3 class="section">U.S. FDA product labels (${fdaRecords.length})</h3><div class="results">${fdaRecords.map(liveCard).join('')}</div>`:'';
-  const out=document.getElementById('results'); if(out) out.innerHTML=localHtml+fdaHtml||'<p class="muted">No matching record found in the connected local database or U.S. FDA label search. This does not mean the medicine is unavailable or unsafe.</p>';
-  document.querySelectorAll('[data-mw-local]').forEach(b=>b.onclick=()=>mwLocalDetail(local[Number(b.dataset.mwLocal)]));
-  document.querySelectorAll('[data-live-drug]').forEach(b=>b.onclick=()=>detail(fdaRecords[Number(b.dataset.liveDrug)]));
-}
-async function renderSearch(q=''){
-  mwLastSearchTerm=q;
-  app.innerHTML=`<section class="card"><h2>Search medicine information</h2><p class="muted">Search MediWorld's uploaded JSON records and U.S. FDA product-label records.</p><div class="searchrow"><input id="query" placeholder="e.g. Paracetamol, acetaminophen…" value="${esc(q)}"><button class="primary" id="mwSearchBtn">Search</button></div><div class="small" style="margin-top:10px">Local database file: ${esc(MW_LOCAL_DB_URL)} · Live external source: U.S. FDA openFDA.</div><div id="mwDbStatus" class="muted section">Checking the uploaded MediWorld database…</div><div id="liveStatus" class="muted"></div><div class="results" id="results"></div><div class="warning section">A database record is not a personal recommendation. Records may be incomplete or differ by country and product. Never use this page to choose a dose or change treatment without a pharmacist or doctor.</div></section>`;
-  const input=document.getElementById('query');
-  const status=document.getElementById('liveStatus');
-  const run=async()=>{
-    const term=input.value.trim(); mwLastSearchTerm=term;
-    if(!term){document.getElementById('results').innerHTML='';status.textContent='Please enter a medicine name.';return;}
-    status.textContent='Searching U.S. FDA labels…';
-    let fda=[];
-    try{ fda=await lookupLive(term); liveMedicines=fda; }
-    catch(e){ status.textContent='U.S. FDA search is temporarily unavailable. Local database results are still shown.'; }
-    if(!fda.length && !status.textContent.includes('unavailable')) status.textContent='No matching U.S. FDA label found. Local database results, if any, are shown above.';
-    mwRenderSearchResults(term,fda);
-  };
-  document.getElementById('mwSearchBtn').onclick=run;
-  input.onkeydown=e=>{if(e.key==='Enter')run()};
-  document.getElementById('mwDbStatus').textContent=mwLocalRecords.length
-    ? `MediWorld local database loaded: ${mwLocalRecords.length} record(s).`
-    : 'MediWorld local database loaded, but it currently contains 0 medicine records. Add verified records to the JSON file to make them searchable.';
-  if(q) run();
-}
-// Load the JSON from the same GitHub Pages folder as index.html.
-(async function loadMediWorldJson(){
-  const status=()=>document.getElementById('mwDbStatus');
-  try{
-    const response=await fetch(MW_LOCAL_DB_URL,{cache:'no-store'});
-    if(!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data=await response.json();
-    mwLocalRecords=Array.isArray(data.records)?data.records:[];
-    if(status()) status().textContent=mwLocalRecords.length
-      ? `MediWorld local database connected: ${mwLocalRecords.length} record(s) loaded.`
-      : 'MediWorld database connected successfully. It is currently empty; no medicine records have been added yet.';
-  }catch(err){
-    console.warn('MediWorld JSON database could not be loaded:',err);
-    if(status()) status().textContent='Could not load MediWorld_Database_Template.json. Check that the JSON file is uploaded beside index.html in the repository root.';
-  }
-})();
-</script>
-</body></html>
+</body>
+</html>
