@@ -1,0 +1,25 @@
+{
+  "project": "MediWorld",
+  "version": "1.0",
+  "purpose": "Starter structure for a medicine information database. This file contains no verified medicine records.",
+  "important_notice": "Do not use placeholder data for medical decisions. Add medicine records only from reliable official sources and include source URLs, country, and last-verified date.",
+  "supported_record_fields": {
+    "id": "Unique record identifier",
+    "brand_name": "Product/brand name",
+    "generic_name": "Active ingredient or generic name",
+    "strength": "Strength as printed on the product label",
+    "dosage_form": "Tablet, capsule, syrup, injection, etc.",
+    "country": "Country where this product record applies",
+    "manufacturer": "Manufacturer name",
+    "uses": "Officially stated uses",
+    "warnings": "Official label warnings and precautions",
+    "side_effects": "Officially listed adverse effects",
+    "interactions": "Interactions stated by the official source",
+    "dosage_label": "Exact label dosage text; do not convert into personalized advice",
+    "source_name": "Name of official regulator/database",
+    "source_url": "Direct URL to the source record",
+    "last_verified": "Date the source record was last checked (YYYY-MM-DD)",
+    "language": "Language of the source record"
+  },
+  "records": []
+}
